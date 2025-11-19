@@ -76,7 +76,7 @@
                 <div class="form-group">
                     <textarea name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
                 </div>
-                <button type="submit" class="primary deep">Send Message ↗</button>
+                <button type="button" class="primary deep" id="contactSubmit">Send Message ↗</button>
                 <p class="form-status" role="status" aria-live="polite"></p>
             </form>
         </div>
@@ -160,19 +160,20 @@
             startSlideShow();
             
             const contactForm = document.getElementById('contactForm');
+            const submitButton = document.getElementById('contactSubmit');
             const statusEl = document.querySelector('.form-status');
-            if (contactForm) {
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-
+            if (contactForm && submitButton) {
+                submitButton.addEventListener('click', async () => {
                     if (statusEl) {
                         statusEl.textContent = 'Sending...';
                     }
+                    submitButton.disabled = true;
 
                     const formData = new FormData(contactForm);
+                    const endpoint = contactForm.getAttribute('action') || '/api/contact';
 
                     try {
-                        const response = await fetch(contactForm.action, {
+                        const response = await fetch(endpoint, {
                             method: 'POST',
                             body: formData,
                         });
@@ -189,6 +190,8 @@
                         if (statusEl) {
                             statusEl.textContent = 'Something went wrong. Please try again later.';
                         }
+                    } finally {
+                        submitButton.disabled = false;
                     }
                 });
             }
