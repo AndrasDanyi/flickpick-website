@@ -343,6 +343,13 @@ p {
     text-align: center;
 }
 
+.form-status {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    min-height: 1.2em;
+}
+
 .site-footer {
     border-top: 1px solid var(--border);
     padding: 3rem clamp(1.5rem, 5vw, 5rem);

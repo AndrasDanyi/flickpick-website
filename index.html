@@ -66,7 +66,7 @@
             <h2>Get in Touch</h2>
             <p>Reach out with any issues, questions, feature requests etc..</p>
             
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="/api/contact" method="POST" novalidate>
                 <div class="form-group">
                     <input type="text" name="name" id="name" placeholder="Your Name" required>
                 </div>
@@ -77,6 +77,7 @@
                     <textarea name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
                 </div>
                 <button type="submit" class="primary deep">Send Message ↗</button>
+                <p class="form-status" role="status" aria-live="polite"></p>
             </form>
         </div>
     </main>
@@ -159,18 +160,36 @@
             startSlideShow();
             
             const contactForm = document.getElementById('contactForm');
+            const statusEl = document.querySelector('.form-status');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
-                    
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const message = document.getElementById('message').value;
-                    
-                    const subject = encodeURIComponent('Contact from FlickPick Website');
-                    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                    
-                    window.location.href = `mailto:hello@cassandrastudios.com?subject=${subject}&body=${body}`;
+
+                    if (statusEl) {
+                        statusEl.textContent = 'Sending...';
+                    }
+
+                    const formData = new FormData(contactForm);
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: formData,
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Request failed');
+                        }
+
+                        if (statusEl) {
+                            statusEl.textContent = 'Thanks! We will get back to you shortly.';
+                        }
+                        contactForm.reset();
+                    } catch (error) {
+                        if (statusEl) {
+                            statusEl.textContent = 'Something went wrong. Please try again later.';
+                        }
+                    }
                 });
             }
         });
