@@ -1,0 +1,456 @@
+:root {
+    color-scheme: dark;
+    --bg: #0b0c10;
+    --surface: #15171f;
+    --text: #f4f4f2;
+    --muted: #9b9fb3;
+    --accent: #b0ff92;
+    --deep: #4ec54e;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000000;
+    background-image: linear-gradient(to bottom, #000000, #0f0518);
+    color: var(--text);
+    font-family: -apple-system, 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+main {
+    min-height: 100vh;
+    padding: 4rem clamp(1.5rem, 5vw, 5rem);
+}
+
+main > * + * {
+    margin-top: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+h1,
+h2,
+h3 {
+    font-family: -apple-system, 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+h2 {
+    font-weight: 600;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+p {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+}
+
+.eyebrow {
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.primary {
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #051005;
+    padding: 0.95rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(176, 255, 146, 0.35);
+}
+
+.primary.ghost {
+    background: transparent;
+    border: 1px solid var(--text);
+    text-decoration: none;
+    text-align: center;
+    color: var(--text);
+}
+
+.journey-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.journey-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.journey-copy .eyebrow {
+    display: none;
+}
+
+.headline-with-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.headline-with-logo h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: none;
+}
+
+.primary.subtle {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+}
+
+.apple-icon {
+    flex-shrink: 0;
+}
+
+.steps-container {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.steps-column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.steps-column article {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    opacity: 0.4;
+    transition: opacity 200ms ease, transform 200ms ease;
+    cursor: pointer;
+}
+
+.steps-column article.step-active {
+    opacity: 1;
+    transform: translateX(0.25rem);
+}
+
+.phone-mockup-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding-bottom: 20px;
+}
+
+.iphone-frame {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 9 / 19.5;
+    background: #1a1a1a;
+    border-radius: 3rem;
+    padding: 0.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                0 0 0 2px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.iphone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 2.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.iphone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 1.8rem;
+    background: #1a1a1a;
+    border-radius: 0 0 1.2rem 1.2rem;
+    z-index: 10;
+}
+
+.iphone-content {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.phone-screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.phone-dots {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.phone-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    aspect-ratio: 1 / 1;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: transform 150ms ease, background 150ms ease;
+    appearance: none;
+}
+
+.phone-dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+}
+
+.step-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.25);
+    margin-bottom: 0.5rem;
+    font-family: -apple-system, 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.journey-visual {
+    margin: 0;
+}
+
+.journey-visual img {
+    width: 100%;
+    border-radius: 1.2rem;
+    display: block;
+    object-fit: cover;
+    filter: saturate(1.1) brightness(0.95);
+}
+
+.connect-block {
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+}
+
+.primary.deep {
+    background: var(--deep);
+    color: #031103;
+}
+
+.contact-form {
+    width: 100%;
+    margin: 2rem auto 0;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    color: var(--text);
+    font-family: -apple-system, 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    transition: border-color 200ms ease, background 200ms ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--muted);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form button {
+    width: 100%;
+    margin-top: 0.5rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem clamp(1.5rem, 5vw, 5rem);
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-company {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-company p {
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-company p:last-child {
+    margin-bottom: 0;
+}
+
+.footer-company strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.footer-company a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+
+.footer-company a:hover {
+    color: var(--text);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 200ms ease;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+}
+
+@media (max-width: 720px) {
+    main {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .journey-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .headline-with-logo {
+        flex-wrap: wrap;
+    }
+
+    .steps-container {
+        flex-direction: column;
+    }
+
+    .steps-column,
+    .phone-mockup-container {
+        width: 100%;
+    }
+
+    .phone-mockup-container {
+        min-height: 400px;
+    }
+
+    .iphone-frame {
+        max-width: 250px;
+    }
+
+    .site-footer {
+        padding: 2rem 1.5rem;
+        margin-top: 3rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-links {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+}
+
